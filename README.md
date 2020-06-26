@@ -1,5 +1,20 @@
 # JB.Ansible
+
 Ansible playbooks for demo, deploy ...etc
+
+
+## Run the Ansible Playbook
+
+```s
+$ ansible-playbook --private-key ~/.ssh/id_rsa -i inventory playbook.yml
+```
+
+Or use the configuration from `ansible.cfg`, update the current work directory to o-w 
+
+```
+$ chmod o-w .
+$ ansible-playbook playbook.yml
+```
 
 
 
