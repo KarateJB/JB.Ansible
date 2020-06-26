@@ -1,0 +1,19 @@
+---
+- name: Clone app repository(s)
+  include: clone.yml
+
+- name: Docker compose up
+  docker_compose:
+    project_src: '{{ docker_compose_file_path }}'
+    build: yes
+    nocache: yes
+    state: present 
+  register: docker_compose_output
+
+- debug:
+    var: docker_compose_output
+  # assert:
+  #   that:
+  #     - "idsrv-auth.state.running"
+  #     - "idsrv-backend.state.running"
+

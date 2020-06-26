@@ -1,0 +1,13 @@
+---
+- name: Check if pip3 is already installed
+  command: pip3 --version
+  ignore_errors: true
+  changed_when: false
+  register: pip3_is_installed
+
+- name: Install pip3
+  apt:
+    name: python3-pip
+    update_cache: yes
+  when: pip3_is_installed.rc != 0 # Return code is not success
+    

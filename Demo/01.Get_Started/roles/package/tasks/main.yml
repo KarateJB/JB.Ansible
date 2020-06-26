@@ -1,0 +1,17 @@
+---
+- name: Check if vim is already installed
+  command: vim --version
+  ignore_errors: true
+  changed_when: false
+  register: vim_is_installed
+
+- name: Install vim
+  apt:
+    name: vim
+    update_cache: yes
+    when: vim_is_installed.rc != 0  # Install when return code is not success
+
+- name: Install iputils-ping
+  apt:
+    name: iputils-ping
+    update_cache: yes
