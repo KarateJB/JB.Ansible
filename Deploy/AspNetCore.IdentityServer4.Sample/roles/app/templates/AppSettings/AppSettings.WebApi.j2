@@ -1,0 +1,17 @@
+{
+  "Logging": {
+    "LogLevel": {
+      "Default": "Debug",
+      "System": "Information",
+      "Microsoft": "Information"
+    }
+  },
+  "Host": {
+    "AuthServer": "https://{{ auth_host }}:{{ auth_port }}",
+    "Redis": "{{ redis_host }}:{{ redis_port }}"
+  },
+  "AuthOptions": {
+    "Audience": "{{ audience }}",
+    "ClientId": "{{ client_id }}"
+  }
+}
