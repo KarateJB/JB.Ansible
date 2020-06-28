@@ -4,5 +4,6 @@
   roles:
     - { role: app, become: yes }
   vars:
-    - jenkins_admin_user: admin
-    - jenkins_admin_pass: admin
+    - env: "development"
+  # vars_files:
+  #   - vars/xxx.yml

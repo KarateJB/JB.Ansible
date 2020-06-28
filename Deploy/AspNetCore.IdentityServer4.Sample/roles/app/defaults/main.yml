@@ -3,9 +3,10 @@ app: AspNetCore.IdentityServer4.Sample
 deploy_path: /etc/deploy
 docker_compose_file_path: "{{ deploy_path }}/{{ app }}/docker"
 
-apt_packages:
-  - python-pip
-  - python3-pip
+# apt_packages:
+#   - python-pip
+#   - python3-pip
 
-pip_packages:
-  - ansible-lint
+# pip_packages:
+#   - ansible-lint
+...
