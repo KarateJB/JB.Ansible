@@ -32,6 +32,12 @@ $ ansible-playbook docker-app.yml -e "machine=dev_hp_omen env=development"
 
 
 
+For advanced inventory/vars usage (group_vars/hosts_vars/hosts), use the following command,
+
+```s
+$ ansible-playbook -e "machine=development" --private-key ~/.ssh/id_rsa -i ./inventories/dev_hp_omen/ docker-app-adv.yml
+```
+
 
 ## Trouble shootings
 
