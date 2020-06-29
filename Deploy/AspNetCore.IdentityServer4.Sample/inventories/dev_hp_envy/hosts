@@ -1,0 +1,4 @@
+[development]
+docker-host1 ansible_ssh_host={{host_ip_1}} ansible_port=22 ansible_user={{ansible_deploy_user}} 
+
+[production]

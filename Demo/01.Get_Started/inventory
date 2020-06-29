@@ -1,2 +1,2 @@
 [server]
-172.20.126.88 ansible_port=2223 ansible_user=root ansible_python_interpreter=/usr/bin/python3
+172.25.240.31 ansible_port=2222 ansible_user=root ansible_python_interpreter=/usr/bin/python3

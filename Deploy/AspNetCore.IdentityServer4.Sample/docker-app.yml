@@ -1,5 +1,8 @@
 ---
-- hosts: server
+- name: Deploy Applications
+  vars:
+    - machine: dev_hp_omen
+  hosts: "{{ machine }}"
   gather_facts: no
   roles:
     - { role: app, become: yes }

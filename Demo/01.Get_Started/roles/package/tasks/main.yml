@@ -9,7 +9,8 @@
   apt:
     name: vim
     update_cache: yes
-    when: vim_is_installed.rc != 0  # Install when return code is not success
+  when: vim_is_installed.rc != 0  # Install when return code is not success
+  # when: vim_is_installed != succeeded  # Install when return code is not success
 
 - name: Install iputils-ping
   apt:

@@ -3,7 +3,9 @@
 Ansible playbooks for demo, deploy ...etc
 
 
-## Run the Ansible Playbook
+## Basic commands
+
+### Run the Ansible Playbook
 
 ```s
 $ ansible-playbook --private-key ~/.ssh/id_rsa -i inventory playbook.yml
@@ -11,10 +13,23 @@ $ ansible-playbook --private-key ~/.ssh/id_rsa -i inventory playbook.yml
 
 Or use the configuration from `ansible.cfg`, update the current work directory to o-w 
 
-```
+```s
 $ chmod o-w .
 $ ansible-playbook playbook.yml
 ```
+
+
+## Deploy/AspNetCore.IdentityServer4.Sample
+
+```s
+$ ansible-playbook docker-app.yml -e "machine=dev_hp_omen env=development"
+```
+
+
+> The `env` variable's defualt value is defined in `docker-app.yml`.
+
+> Debug Ansible by `ANSIBLE_DEBUG=True ansible-inventory -i inventories/dev_hp_omen --list --yaml` for example.
+
 
 
 

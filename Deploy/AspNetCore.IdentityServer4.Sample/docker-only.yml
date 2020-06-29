@@ -1,4 +1,7 @@
 ---
-- hosts: server
+- name: Prepare Docker environment
+  vars:
+    - machine: dev_hp_omen
+  hosts: "{{ machine }}"
   roles:
     - { role: docker, become: yes }
