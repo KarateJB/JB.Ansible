@@ -11,7 +11,15 @@ ldap_bind_dn: "cn=admin,dc=example,dc=org"
 ldap_bind_credentials: "admin"
 ldap_search_base: "dc=example,dc=org"
 ldap_search_filter: "(&(objectClass=person)(uid={0}))"
-signing_credential_default_expiry: 1200
+signing_credential:
+    default_expiry:
+        minute: 60
+access_token:
+    default_absolute_expiry: 1200
+    client_credentials_default_absolute_expiry: 240
+refresh_token:
+    default_absolute_expiry: 24000
+    default_sliding_expiry: 2400
 
 # For AppSettings.WebApi.j2 only
 auth_host: "auth"

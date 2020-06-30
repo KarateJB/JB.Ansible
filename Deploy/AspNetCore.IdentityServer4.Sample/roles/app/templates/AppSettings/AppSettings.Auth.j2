@@ -21,8 +21,30 @@
   "Global": {
     "SigningCredential": {
       "DefaultExpiry": {
-        "Second": {{ signing_credential_default_expiry }}
+        {% if signing_credential.default_expiry.year is defined %}
+        "Year": {{ signing_credential.default_expiry.year }}
+        {% elif signing_credential.default_expiry.month is defined %}
+        "Month": {{ signing_credential.default_expiry.month }}
+        {% elif signing_credential.default_expiry.day is defined %}
+        "Day": {{ signing_credential.default_expiry.day }}
+        {% elif signing_credential.default_expiry.hour is defined %}
+        "Hour": {{ signing_credential.default_expiry.hour }}
+        {% elif signing_credential.default_expiry.minute is defined %}
+        "Minute": {{ signing_credential.default_expiry.minute }}
+        {% elif signing_credential.default_expiry.second is defined %}
+        "Second": {{ signing_credential.default_expiry.second }}
+        {% else %}
+        "Year": 1
+        {% endif %}
       }
+    },
+    "AccessToken": {
+      "DefaultAbsoluteExpiry": {{ access_token.default_absolute_expiry }},
+      "ClientCredentialsDefaultAbsoluteExpiry": {{ access_token.client_credentials_default_absolute_expiry }}
+    },
+    "RefreshToken": {
+      "DefaultAbsoluteExpiry": {{ refresh_token.default_absolute_expiry }},
+      "DefaultSlidingExpiry": {{ refresh_token.default_sliding_expiry }}
     }
   }
 }

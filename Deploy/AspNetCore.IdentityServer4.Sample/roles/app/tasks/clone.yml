@@ -8,4 +8,6 @@
   git:
     repo: https://github.com/KarateJB/AspNetCore.IdentityServer4.Sample.git
     dest: "{{ deploy_path }}/{{ app }}"
+    version: set-default-config # Checkout the certain branch
+
 ...

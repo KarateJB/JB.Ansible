@@ -1,9 +1,9 @@
 # Here we assign variables to particular groups
 
 # Ubuntu-test
-host_ip_1: "172.25.240.31"
+host_ip_1: "172.25.236.219"
 
 # Ubuntu-18.04
-host_ip_2: "172.25.240.31"
+host_ip_2: "172.25.236.219"
 
 ansible_deploy_user: "root"
