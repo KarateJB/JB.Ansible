@@ -7,5 +7,5 @@
   gather_facts: no
   roles:
     - { role: app, become: yes }
-  # vars_files:
-  #   - vars/xxx.yml
+  vars_files:
+    - "roles/app/vars/{{ env }}.yml"

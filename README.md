@@ -35,7 +35,7 @@ $ ansible-playbook docker-app.yml -e "machine=dev_hp_omen env=development"
 For advanced inventory/vars usage (group_vars/hosts_vars/hosts), use the following command,
 
 ```s
-$ ansible-playbook -e "env=development" --private-key ~/.ssh/id_rsa -i ./inventories/dev_hp_omen/ docker-app-adv.yml
+$ ansible-playbook -e "env=development" --private-key ~/.ssh/id_rsa -i ./inventories/JB/ docker-app-adv.yml
 ```
 
 
@@ -43,7 +43,9 @@ $ ansible-playbook -e "env=development" --private-key ~/.ssh/id_rsa -i ./invento
 
 ### WSL2
 
-https://github.com/microsoft/WSL/issues/4189#issuecomment-518277265
+#### Docker 'cgroups: cannot find cgroup mount destination: unknown'
+
+See https://github.com/microsoft/WSL/issues/4189#issuecomment-518277265
 
 ```s
 $ sudo mkdir /sys/fs/cgroup/systemd

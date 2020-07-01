@@ -6,9 +6,7 @@
   gather_facts: no
   roles:
     - { role: app, become: yes }
-  # vars_files:
-  #   - vars/xxx.yml
-  post_tasks:
+  post_tasks: # (Optional) Stop the containers
     - name: Docker compose stop containers
       docker_compose:
         project_src: '{{ docker_compose_file_path }}'

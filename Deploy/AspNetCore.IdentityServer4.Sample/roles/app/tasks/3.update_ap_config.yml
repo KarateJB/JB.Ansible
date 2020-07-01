@@ -10,7 +10,8 @@
     - "/tmp/deploy/Backend"
 
 # For advanced inventory/vars usage (group_vars/hosts_vars/hosts),
-# No need to include vars file manully.
+# No need to include vars file manually as following. Cus Ansible will load group_vars/<The value of hosts in playbook> automatically.
+# If you want include other vars file, use the following way or use vars_files in playbook.
 # - name: Include vars file
 #   include_vars: "{{ env }}.yml"
   
