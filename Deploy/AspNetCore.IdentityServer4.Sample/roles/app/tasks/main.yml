@@ -1,74 +1,20 @@
 ---
 - name: Clone app repository(s)
-  include: clone.yml
+  include: 1.clone_ap_repository.yml
 
-- name: Docker compose up
-  docker_compose:
-    project_src: '{{ docker_compose_file_path }}'
-    build: yes
-    nocache: yes
-    state: present 
-  register: docker_compose_output
+- name: Build and run containers
+  include: 2.run_containers.yml
 
-- debug:
-    var: docker_compose_output
+- name: Update application configuration
+  include: 3.update_ap_config.yml
 
-- assert:
-    that:
-      - "docker_compose_output.ansible_facts.auth['idsrv-auth'].state.running"
-      - "docker_compose_output.ansible_facts.backend['idsrv-backend'].state.running"
-      - "docker_compose_output.ansible_facts.nginx['idsrv-nginx'].state.running"
-      - "docker_compose_output.ansible_facts.openldap['idsrv-openldap'].state.running"
-      - "docker_compose_output.ansible_facts.redis['idsrv-redis'].state.running"
+- name: Update certificate
+  include: 4.update_cert.yml 
 
-- name: Create temp directory for configuration files
-  file:
-    path: "{{ item }}"
-    state: directory
-    mode: 0755
-    group: root
-    owner: root
-  with_items:
-    - "/tmp/deploy/Auth/"
-    - "/tmp/deploy/Backend"
+- name: Restart containers
+  include: 5.restart_containers.yml 
 
-- name: Include vars file
-  include_vars: "{{ env }}.yml"
-  
-- name: Generate Auth Server's AppSettings file
-  template:
-    src: AppSettings/AppSettings.Auth.j2
-    dest: /tmp/deploy/Auth/{{ appsettings_file_name }}
+- name: Remove temp files
+  include: 6.remove_tmp_files.yml 
 
-- name: Generate Backend's AppSettings file
-  template:
-    src: AppSettings/AppSettings.WebApi.j2
-    dest: /tmp/deploy/Backend/{{ appsettings_file_name }}
-
-- name: Overwrite AppSettings files
-  command: "{{ item }}"
-  with_items:
-    - docker cp /tmp/deploy/Auth/{{ appsettings_file_name }} idsrv-auth:/app
-    - docker cp /tmp/deploy/Backend/{{ appsettings_file_name }} idsrv-backend:/app
-  register: appsettings_are_updated
-
-- name: Restart modified containers
-  command: "docker restart {{ item }}"
-  with_items:
-    - idsrv-auth
-    - idsrv-backend
-  when: appsettings_are_updated is succeeded
-
-- name: Delete temparary AppSettings file
-  file:
-    path: "{{ item }}"
-    state: absent
-  with_items:
-    - /tmp/deploy/Auth/{{ appsettings_file_name }}
-    - /tmp/deploy/Backend/{{ appsettings_file_name }}
-  retries: 3
-  delay: 3
-  register: temp_configs_are_deleted
-  until: temp_configs_are_deleted is succeeded
-  
 ...

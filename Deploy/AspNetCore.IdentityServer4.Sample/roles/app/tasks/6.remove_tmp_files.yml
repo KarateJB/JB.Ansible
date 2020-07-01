@@ -1,0 +1,33 @@
+---
+
+- name: Delete temparary AppSettings file
+  file:
+    path: "{{ item }}"
+    state: absent
+  with_items:
+    - "{{ deploy_temp_path }}/Auth/{{ appsettings_file_name }}"
+    - "{{ deploy_temp_path }}/Backend/{{ appsettings_file_name }}"
+  changed_when: false
+  retries: 3
+  delay: 3
+  register: temp_configs_are_deleted
+  until: temp_configs_are_deleted is succeeded
+
+- name: Find all certificates to delete
+  find:
+    paths: "{{ deploy_temp_path }}/Certs"
+    patterns: "*"
+  register: files_to_delete  
+
+- name: Delete temparary certificates
+  file:
+    path: "{{ item.path }}"
+    state: absent
+  with_items: "{{ files_to_delete.files }}"
+  changed_when: false
+  retries: 3
+  delay: 3
+  register: temp_certs_are_deleted
+  until: temp_certs_are_deleted is succeeded
+
+...

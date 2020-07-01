@@ -28,14 +28,14 @@ $ ansible-playbook docker-app.yml -e "machine=dev_hp_omen env=development"
 
 > The `env` variable's defualt value is defined in `docker-app.yml`.
 
-> Debug Ansible by `ANSIBLE_DEBUG=True ansible-inventory -i inventories/dev_hp_omen --list --yaml` for example.
+> Debug Ansible by `ANSIBLE_DEBUG=True ansible-inventory -i inventories/dev --list --yaml` for example.
 
 
 
 For advanced inventory/vars usage (group_vars/hosts_vars/hosts), use the following command,
 
 ```s
-$ ansible-playbook -e "machine=development" --private-key ~/.ssh/id_rsa -i ./inventories/dev_hp_omen/ docker-app-adv.yml
+$ ansible-playbook -e "env=development" --private-key ~/.ssh/id_rsa -i ./inventories/dev_hp_omen/ docker-app-adv.yml
 ```
 
 

@@ -16,10 +16,10 @@ signing_credential:
         year: 1
 access_token:
     default_absolute_expiry: 3600
-    client_credentials_default_absolute_expiry: 240
+    client_credentials_default_absolute_expiry: 360
 refresh_token:
-    default_absolute_expiry: 24000
-    default_sliding_expiry: 2400
+    default_absolute_expiry: 36000
+    default_sliding_expiry: 3600
 
 
 # For AppSettings.WebApi.j2 only

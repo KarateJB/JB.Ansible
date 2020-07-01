@@ -1,0 +1,38 @@
+- name: Create temp directory for certificates
+  file:
+    path: "{{ item }}"
+    state: directory
+    mode: 0755
+    group: root
+    owner: root
+  with_items:
+    - "{{ deploy_temp_path }}/Certs"
+
+- name: Copy certificates to managed node
+  copy:
+    src: "files/{{ item }}"
+    dest: "{{ deploy_temp_path }}/Certs/"
+  with_items:
+    - "{{ env }}.crt"
+    - "{{ env }}.key"
+    - "{{ env }}.pfx"
+  register: certs_are_copied
+
+- name: Rename certificates
+  command: "{{ item }}"
+  with_items:
+    - "mv {{ deploy_temp_path }}/Certs/{{ env }}.crt {{ deploy_temp_path }}/Certs/docker.crt"
+    - "mv {{ deploy_temp_path }}/Certs/{{ env }}.key {{ deploy_temp_path }}/Certs/docker.key"
+    - "mv {{ deploy_temp_path }}/Certs/{{ env }}.pfx {{ deploy_temp_path }}/Certs/docker.pfx"
+  register: certs_are_renamed
+
+- name: Copy to containers and overwrite
+  command: "{{ item }}"
+  with_items:
+    - docker cp {{ deploy_temp_path }}/Certs/docker.pfx idsrv-auth:/etc/docker/certs/docker.pfx
+    - docker cp {{ deploy_temp_path }}/Certs/docker.pfx idsrv-backend:/etc/docker/certs/docker.pfx
+    - docker cp {{ deploy_temp_path }}/Certs/docker.crt idsrv-nginx:/etc/docker/certs/docker.crt
+    - docker cp {{ deploy_temp_path }}/Certs/docker.key idsrv-nginx:/etc/docker/certs/docker.key
+  register: certs_are_updated
+
+

@@ -1,7 +1,0 @@
-# Here we assign variables to particular systems
-
-# ansible configuration
-ansible_python_interpreter: "/usr/bin/python3"
-
-# AppSettings
-appsettings_file_name: "appsettings.Docker.json"

@@ -2,11 +2,10 @@
 - name: Deploy Applications
   vars:
     - machine: dev_hp_omen
+    - env: "development"
   hosts: "{{ machine }}"
   gather_facts: no
   roles:
     - { role: app, become: yes }
-  vars:
-    - env: "development"
   # vars_files:
   #   - vars/xxx.yml
