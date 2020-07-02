@@ -2,6 +2,13 @@
 
 Ansible playbooks for demo, deploy ...etc
 
+## Content
+
+| Type | Path | Description |
+|:----:|:-----|:------------|
+| Demo | Demo/01.Get_Started | A sample playbook to get started |
+| Deploy | Deploy/AspNetCore.IdentityServer4.Sample | The playbook to install Docker and deploy [karatejb\AspNetCore.IdentityServer4.Sample](https://github.com/KarateJB/AspNetCore.IdentityServer4.Sample) to Ubuntu |
+
 
 ## Basic commands
 
@@ -18,25 +25,6 @@ $ chmod o-w .
 $ ansible-playbook playbook.yml
 ```
 
-
-## Deploy/AspNetCore.IdentityServer4.Sample
-
-```s
-$ ansible-playbook docker-app.yml -e "machine=dev_hp_omen env=development"
-```
-
-
-> The `env` variable's defualt value is defined in `docker-app.yml`.
-
-> Debug Ansible by `ANSIBLE_DEBUG=True ansible-inventory -i inventories/dev --list --yaml` for example.
-
-
-
-For advanced inventory/vars usage (group_vars/hosts_vars/hosts), use the following command,
-
-```s
-$ ansible-playbook -e "env=development" --private-key ~/.ssh/id_rsa -i ./inventories/JB/ docker-app-adv.yml
-```
 
 
 ## Trouble shootings
