@@ -1,6 +1,7 @@
 # JB.Ansible
 
-Ansible playbooks for demo, deploy ...etc
+Ansible playbooks for demo, deploy ...etc.
+
 
 ## Content
 
