@@ -6,12 +6,12 @@
   gather_facts: no
   roles:
     - { role: app, become: yes }
-  post_tasks: # (Optional) Stop the containers
-    - name: Docker compose stop containers
-      docker_compose:
-        project_src: '{{ docker_compose_file_path }}'
-        stopped: yes
-      register: docker_compose_output
+  # post_tasks: # (Optional) Stop the containers
+    # - name: Docker compose stop containers
+    #   docker_compose:
+    #     project_src: '{{ docker_compose_file_path }}'
+    #     stopped: yes
+    #   register: docker_compose_output
 
-    - debug:
-        var: docker_compose_output
+    # - debug:
+    #     var: docker_compose_output

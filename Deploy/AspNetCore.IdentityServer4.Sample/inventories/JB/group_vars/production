@@ -21,11 +21,10 @@ refresh_token:
     default_absolute_expiry: 36000
     default_sliding_expiry: 3600
 
-
 # For AppSettings.WebApi.j2 only
 auth_host: "auth"
 auth_port: "6001"
 audience: "MyBackendApi2"
 client_id: "PolicyBasedBackend"
-
+refresh_discovery_doc_duration: 8
 ...
