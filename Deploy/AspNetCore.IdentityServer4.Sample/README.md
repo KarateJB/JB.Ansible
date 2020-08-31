@@ -162,6 +162,38 @@ ANSIBLE_DEBUG=True ansible-inventory -i inventories/JB --list --yaml
 ```
 
 
+### Cannot have both the docker-py and docker python modules
+
+1. Uninstall python2
+
+```s
+$ apt-get purge -y python2.7
+```
+
+
+2. Uninstall docker's related package
+
+```s
+$ pip3 list | grep docker
+docker (4.3.1)
+docker-compose (1.26.2)
+docker-pycreds (0.4.0)
+dockerpty (0.4.1)
+
+$ pip3 uninstall docker docker-compose
+```
+
+
+3. Then force re-install docker and docker-compose.
+
+```s
+$ pip3 install --force-reinstall docker docker-compose
+```
+
+And restart the machine.
+
+
+
 ### WSL2
 
 #### Docker 'cgroups: cannot find cgroup mount destination: unknown'
