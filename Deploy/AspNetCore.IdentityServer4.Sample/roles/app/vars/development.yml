@@ -24,7 +24,10 @@ refresh_token:
 # For AppSettings.WebApi.j2 only
 auth_host: "auth"
 auth_port: "6001"
+oidc_host: "{{ ansible_ssh_host }}"
+oidc_port: "6001"
 audience: "MyBackendApi2"
 client_id: "PolicyBasedBackend"
+refresh_discovery_doc_duration: 8
 
 ...

@@ -27,5 +27,6 @@ auth_host: "auth"
 auth_port: "6001"
 audience: "MyBackendApi2"
 client_id: "PolicyBasedBackend"
+refresh_discovery_doc_duration: 8
 
 ...

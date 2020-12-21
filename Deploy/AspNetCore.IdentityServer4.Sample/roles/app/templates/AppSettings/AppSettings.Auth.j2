@@ -45,6 +45,11 @@
     "RefreshToken": {
       "DefaultAbsoluteExpiry": {{ refresh_token.default_absolute_expiry }},
       "DefaultSlidingExpiry": {{ refresh_token.default_sliding_expiry }}
+    },
+    "OpenId": {
+      "AllowedRedirectUris": [
+        "https://{{ ansible_ssh_host }}:5001/signin-oidc"
+      ]
     }
   }
 }
