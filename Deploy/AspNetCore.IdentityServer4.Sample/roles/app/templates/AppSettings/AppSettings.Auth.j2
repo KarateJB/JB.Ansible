@@ -45,6 +45,13 @@
     "RefreshToken": {
       "DefaultAbsoluteExpiry": {{ refresh_token.default_absolute_expiry }},
       "DefaultSlidingExpiry": {{ refresh_token.default_sliding_expiry }}
+    },
+    "OpenId": {
+      "AllowedRedirectUris": [
+        {% for var in open_id.allowed_redirect_uris %}
+        "https://{{ var.host }}:{{ var.port }}{{ var.uri }}",
+        {% endfor %}
+      ]
     }
   }
 }
