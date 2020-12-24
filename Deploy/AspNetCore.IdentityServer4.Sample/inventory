@@ -2,4 +2,4 @@
 192.168.80.128 ansible_port=22 ansible_user=root ansible_python_interpreter=/usr/bin/python3
 
 [dev_hp_omen]
-172.21.140.245 ansible_port=2223 ansible_user=root ansible_python_interpreter=/usr/bin/python3
+172.25.229.195 ansible_port=2223 ansible_user=root ansible_python_interpreter=/usr/bin/python3
