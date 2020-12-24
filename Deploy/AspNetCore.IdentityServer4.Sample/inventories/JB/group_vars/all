@@ -1,7 +1,7 @@
 # Here we assign variables to particular groups
 
 # Ubuntu-test (WSL2)
-host_ip_1: "172.19.182.89"
+host_ip_1: "172.25.229.195"
 
 # Ubuntu-18.04 (WSL2)
 host_ip_2: "172.30.88.7"
