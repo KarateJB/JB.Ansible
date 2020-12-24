@@ -8,6 +8,6 @@
   git:
     repo: https://github.com/KarateJB/AspNetCore.IdentityServer4.Sample.git
     dest: "{{ deploy_path }}/{{ app }}"
-    version: auth-code-pkce # Checkout the certain branch
+    # version: auth-code-pkce # Checkout the certain branch
 
 ...
