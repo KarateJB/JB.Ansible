@@ -151,6 +151,16 @@ $ ansible-playbook -e "env=development" --private-key ~/.ssh/id_rsa -i ./invento
 
 
 
+Or with Ansible Vault,
+
+```s
+$ echo "12qwaszx" > ~/prod-av-secret
+$ ansible-playbook -e "env=production" --vault-id prod@~/prod-av-secret --private-key ~/.ssh/id_rsa -i ./inventories/JB/ docker-app-adv.yml
+```
+
+
+
+
 ## Trouble shootings
 
 ### Debug

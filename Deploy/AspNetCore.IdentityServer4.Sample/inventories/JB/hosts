@@ -4,3 +4,4 @@ docker-host1 ansible_ssh_host={{host_ip_1}} ansible_port=2223 ansible_user={{ans
 # docker-host3 ansible_ssh_host={{host_ip_3}} ansible_port=22 ansible_user={{ansible_deploy_user}} 
 
 [production]
+docker-host1 ansible_ssh_host={{host_ip_1}} ansible_port=2223 ansible_user={{ansible_deploy_user}} 
