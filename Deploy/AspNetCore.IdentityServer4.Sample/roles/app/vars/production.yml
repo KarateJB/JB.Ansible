@@ -8,7 +8,14 @@ ldap_host: "openldap"
 ldap_port: 389
 ldap_is_enable_ssl: "false"
 ldap_bind_dn: "cn=admin,dc=example,dc=org"
-ldap_bind_credentials: "admin"
+# ldap_bind_credentials: "admin"
+ldap_bind_credentials: !vault |
+          $ANSIBLE_VAULT;1.2;AES256;prod
+          32366237656630623438366466313039393234363465653030633934653737393335353662386239
+          3939346638326365616338633264393430316131356334390a386632626262316330313432356564
+          62623637386537633930646639613935386330343366366664613661393163373332623361663836
+          3136613932363433360a363262336236613839306162643536306564323562386662356562363633
+          3765
 ldap_search_base: "dc=example,dc=org"
 ldap_search_filter: "(&(objectClass=person)(uid={0}))"
 signing_credential:
