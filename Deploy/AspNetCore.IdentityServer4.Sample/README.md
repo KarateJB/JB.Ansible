@@ -2,6 +2,8 @@
 
 The playbook to install Docker and deploy [karatejb\AspNetCore.IdentityServer4.Sample](https://github.com/KarateJB/AspNetCore.IdentityServer4.Sample) to Ubuntu.
 
+
+***
 ## Structure
 
 ```s
@@ -71,7 +73,7 @@ The playbook to install Docker and deploy [karatejb\AspNetCore.IdentityServer4.S
                 main.yml
 ```
 
-
+***
 ## Steps (Using default playbook)
 
 
@@ -110,7 +112,30 @@ You can bypass the **extra vars**: `machine`, `env`, by overwriting the values i
 ```
 
 
+4. (Optional) Use Ansible Vault
 
+For production environment, it is recommeded to use [Ansible Vault](https://docs.ansible.com/ansible/2.8/user_guide/vault.html) for encrypting sensitive information, such as LDAP Credentials.
+For example, to encrypt the value of LDAP Credentials,
+
+```s
+$ echo "<your_pwd>" > ~/prod-av-secret
+$ ansible-vault encrypt_string --vault-id prod@~/prod-av-secret 'admin' --name 'ldap_bind_credentials'
+ldap_bind_credentials: !vault |
+          $ANSIBLE_VAULT;1.2;AES256;prod
+          ...skip the cipher
+```
+
+Paste the above encrypted string to `roles/app/vars/production` and replace the original variable and its value.
+Run the playbook as following,
+
+```s
+$ ansible-playbook --vault-id prod@~/prod-av-secret docker-app.yml -e "machine=dev_hp_omen env=development"
+```
+
+
+
+
+***
 ## Steps (Using hosts/group_vars/host_vars in invertories/xxx)
 
 
@@ -150,7 +175,30 @@ $ ansible-playbook -e "env=development" --private-key ~/.ssh/id_rsa -i ./invento
 ```
 
 
+4. (Optional) Use Ansible Vault
 
+For production environment, it is recommeded to use [Ansible Vault](https://docs.ansible.com/ansible/2.8/user_guide/vault.html) for encrypting sensitive information, such as LDAP Credentials.
+For example, to encrypt the value of LDAP Credentials,
+
+```s
+$ echo "<your_pwd>" > ~/prod-av-secret
+$ ansible-vault encrypt_string --vault-id prod@~/prod-av-secret 'admin' --name 'ldap_bind_credentials'
+ldap_bind_credentials: !vault |
+          $ANSIBLE_VAULT;1.2;AES256;prod
+          ...skip the cipher
+```
+
+Paste the above encrypted string to `inventories/xxx/group_vars/production` and replace the original variable and its value.
+Run the playbook as following,
+
+```s
+$ ansible-playbook -e "env=production" --vault-id prod@~/prod-av-secret --private-key ~/.ssh/id_rsa -i ./inventories/JB/ docker-app-adv.yml
+```
+
+
+
+
+***
 ## Trouble shootings
 
 ### Debug
