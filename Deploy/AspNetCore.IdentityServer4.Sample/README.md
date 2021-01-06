@@ -73,11 +73,17 @@ The playbook to install Docker and deploy [karatejb\AspNetCore.IdentityServer4.S
                 main.yml
 ```
 
+
+
+
+
 ***
 ## Steps (Using default playbook)
 
 
-1. Update the managed node's information in `inventory`
+
+
+### 1. Update the managed node's information in `inventory`
 
 For example, 
 
@@ -87,7 +93,9 @@ For example,
 ```
 
 
-2. (Optional) Update the configurations of Auth Server or Backend webapi
+
+
+### 2. (Optional) Update the configurations of Auth Server or Backend webapi
 
 If you wanna change the values of AppSettings, update the values of
 
@@ -96,7 +104,10 @@ If you wanna change the values of AppSettings, update the values of
 or create a new vars file.
 
 
-3. Run the playbook
+
+
+
+### 3. Run the playbook
 
 ```s
 $ ansible-playbook docker-app.yml -e "machine=dev_hp_omen env=development"
@@ -112,7 +123,10 @@ You can bypass the **extra vars**: `machine`, `env`, by overwriting the values i
 ```
 
 
-4. (Optional) Use Ansible Vault
+
+
+
+### 4. (Optional) Use Ansible Vault
 
 For production environment, it is recommeded to use [Ansible Vault](https://docs.ansible.com/ansible/2.8/user_guide/vault.html) for encrypting sensitive information, such as LDAP Credentials.
 For example, to encrypt the value of LDAP Credentials,
@@ -139,14 +153,19 @@ $ ansible-playbook --vault-id prod@~/prod-av-secret docker-app.yml -e "machine=d
 ## Steps (Using hosts/group_vars/host_vars in invertories/xxx)
 
 
-1. Update the managed node's information 
+
+
+### 1. Update the managed node's information 
 
 Define the managed node's IP in `inventories/xxx/group_vars/all` and
 
 Update the managed node's group information in `inventories/xxx/hosts`.
 
 
-2. (Optional) Update the configurations of Auth Server or Backend webapi
+
+
+
+### 2. (Optional) Update the configurations of Auth Server or Backend webapi
 
 If you wanna change the values of AppSettings, update the values of
 
@@ -155,7 +174,10 @@ If you wanna change the values of AppSettings, update the values of
 or create a new vars file.
 
 
-3. Run the playbook
+
+
+
+### 3. Run the playbook
 
 ```s
 $ ansible-playbook -e "env=development" --private-key ~/.ssh/id_rsa -i ./inventories/xxx/ docker-app-adv.yml
@@ -175,7 +197,10 @@ $ ansible-playbook -e "env=development" --private-key ~/.ssh/id_rsa -i ./invento
 ```
 
 
-4. (Optional) Use Ansible Vault
+
+
+
+### 4. (Optional) Use Ansible Vault
 
 For production environment, it is recommeded to use [Ansible Vault](https://docs.ansible.com/ansible/2.8/user_guide/vault.html) for encrypting sensitive information, such as LDAP Credentials.
 For example, to encrypt the value of LDAP Credentials,

@@ -3,12 +3,17 @@
 Ansible playbooks for demo, deploy ...etc.
 
 
+
+
 ## Content
 
 | Type | Path | Description |
 |:----:|:-----|:------------|
 | Demo | Demo/01.Get_Started | A sample playbook to get started |
 | Deploy | Deploy/AspNetCore.IdentityServer4.Sample | The playbook to install Docker and deploy [karatejb\AspNetCore.IdentityServer4.Sample](https://github.com/KarateJB/AspNetCore.IdentityServer4.Sample) to Ubuntu |
+
+
+
 
 
 ## Basic commands
@@ -25,6 +30,9 @@ Or use the configuration from `ansible.cfg`, update the current work directory t
 $ chmod o-w .
 $ ansible-playbook playbook.yml
 ```
+
+
+
 
 
 
