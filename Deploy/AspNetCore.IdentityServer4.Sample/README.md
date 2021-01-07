@@ -39,7 +39,7 @@ The playbook to install Docker and deploy [karatejb\AspNetCore.IdentityServer4.S
     │  │      main.yml
     │  │
     │  ├─tasks
-    │  │      1.clone_ap_repository.yml
+    │  │      1.clone_ap_repository.yml # Clone the git respository, you can specified certain git branch here
     │  │      2.run_containers.yml
     │  │      3.update_ap_config.yml
     │  │      4.update_cert.yml
