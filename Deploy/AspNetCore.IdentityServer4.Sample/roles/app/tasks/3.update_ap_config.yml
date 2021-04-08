@@ -25,6 +25,11 @@
     src: AppSettings/AppSettings.WebApi.j2
     dest: "{{ deploy_temp_path }}/Backend/{{ appsettings_file_name }}"
 
+- name: Generate Backend's javascript config file
+  template:
+    src: Js/Js.AppConfig.j2
+    dest: "{{ deploy_temp_path }}/Backend/wwwroot/js/app-config.js"    
+
 - name: Copy to containers and overwrite
   command: "{{ item }}"
   with_items:
