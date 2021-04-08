@@ -47,4 +47,9 @@ audience: "MyBackendApi2"
 client_id: "PolicyBasedBackend"
 refresh_discovery_doc_duration: 8
 
+# For Js.AppConfig.j2
+js_auth_host: "{{ ansible_ssh_host }}"
+js_auth_port: "6001"
+js_client_host: "{{ ansible_ssh_host }}"
+js_client_port: "5001"
 ...
