@@ -25,11 +25,17 @@
     src: AppSettings/AppSettings.WebApi.j2
     dest: "{{ deploy_temp_path }}/Backend/{{ appsettings_file_name }}"
 
+- name: Generate Backend's javascript config file
+  template:
+    src: Js/Js.AppConfig.j2
+    dest: "{{ deploy_temp_path }}/Backend/app-config.js"    
+
 - name: Copy to containers and overwrite
   command: "{{ item }}"
   with_items:
     - docker cp {{ deploy_temp_path }}/Auth/{{ appsettings_file_name }} idsrv-auth:/app
     - docker cp {{ deploy_temp_path }}/Backend/{{ appsettings_file_name }} idsrv-backend:/app
+    - docker cp {{ deploy_temp_path }}/Backend/app-config.js idsrv-backend:/app/wwwroot/js
   register: appsettings_are_updated
 
 - name: Restart modified containers

@@ -18,6 +18,11 @@
   "Host": {
     "Redis": "{{ redis_host }}:{{ redis_port }}"
   },
+  "AllowedCrossDomains": [
+    {% for var in allowed_cross_domains %}
+    "https://{{ var.host }}:{{ var.port }}",
+    {% endfor %}
+  ],
   "Global": {
     "SigningCredential": {
       "DefaultExpiry": {
@@ -49,6 +54,23 @@
     "OpenId": {
       "AllowedRedirectUris": [
         {% for var in open_id.allowed_redirect_uris %}
+        "https://{{ var.host }}:{{ var.port }}{{ var.uri }}",
+        {% endfor %}
+      ],
+      "AllowedPostLogoutRedirectUris": [
+        {% for var in open_id.allowed_post_logout_redirect_uris %}
+        "https://{{ var.host }}:{{ var.port }}{{ var.uri }}",
+        {% endfor %}
+      ]
+    },
+    "OpenIdJs": {
+       "AllowedRedirectUris": [
+        {% for var in open_id_js.allowed_redirect_uris %}
+        "https://{{ var.host }}:{{ var.port }}{{ var.uri }}",
+        {% endfor %}
+      ],
+      "AllowedPostLogoutRedirectUris": [
+        {% for var in open_id_js.allowed_post_logout_redirect_uris %}
         "https://{{ var.host }}:{{ var.port }}{{ var.uri }}",
         {% endfor %}
       ]

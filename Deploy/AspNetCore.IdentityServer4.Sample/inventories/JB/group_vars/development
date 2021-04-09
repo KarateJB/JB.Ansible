@@ -11,6 +11,8 @@ ldap_bind_dn: "cn=admin,dc=example,dc=org"
 ldap_bind_credentials: "admin"
 ldap_search_base: "dc=example,dc=org"
 ldap_search_filter: "(&(objectClass=person)(uid={0}))"
+allowed_cross_domains:
+    - { host: '{{ ansible_ssh_host }}', port: '5001' }
 signing_credential:
     default_expiry:
         minute: 60
@@ -23,14 +25,25 @@ refresh_token:
 open_id:
     allowed_redirect_uris:
         - { host: '{{ ansible_ssh_host }}', port: '5001', uri: '/signin-oidc' }
+    allowed_post_logout_redirect_uris:
+        - { host: '{{ ansible_ssh_host }}', port: '5001', uri: '/signout-callback-oidc' }
+open_id_js:
+    allowed_redirect_uris:
+        - { host: '{{ ansible_ssh_host }}', port: '5001', uri: '/OpenId/Login/JS' }
+    allowed_post_logout_redirect_uris:
+        - { host: '{{ ansible_ssh_host }}', port: '5001', uri: '/OpenId/Login/JS' }
+
 
 # For AppSettings.WebApi.j2 only
-auth_host: "auth"
+auth_host: "{{ ansible_ssh_host }}"
 auth_port: "6001"
-oidc_host: "{{ ansible_ssh_host }}"
-oidc_port: "6001"
 audience: "MyBackendApi2"
 client_id: "PolicyBasedBackend"
 refresh_discovery_doc_duration: 8
 
+# For Js.AppConfig.j2
+js_auth_host: "{{ ansible_ssh_host }}"
+js_auth_port: "6001"
+js_client_host: "{{ ansible_ssh_host }}"
+js_client_port: "5001"
 ...
