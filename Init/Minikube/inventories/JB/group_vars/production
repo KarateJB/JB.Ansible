@@ -1,0 +1,55 @@
+---
+# For all
+redis_host: "redis"
+redis_port: 6379
+
+# For AppSettings.Auth.j2 only
+ldap_host: "openldap"
+ldap_port: 389
+ldap_is_enable_ssl: "false"
+ldap_bind_dn: "cn=admin,dc=example,dc=org"
+# ldap_bind_credentials: "admin"
+ldap_bind_credentials: !vault |
+          $ANSIBLE_VAULT;1.2;AES256;prod
+          32366237656630623438366466313039393234363465653030633934653737393335353662386239
+          3939346638326365616338633264393430316131356334390a386632626262316330313432356564
+          62623637386537633930646639613935386330343366366664613661393163373332623361663836
+          3136613932363433360a363262336236613839306162643536306564323562386662356562363633
+          3765
+ldap_search_base: "dc=example,dc=org"
+ldap_search_filter: "(&(objectClass=person)(uid={0}))"
+allowed_cross_domains:
+    - { host: '{{ ansible_ssh_host }}', port: '5001' }
+signing_credential:
+    default_expiry:
+        year: 1
+access_token:
+    default_absolute_expiry: 3600
+    client_credentials_default_absolute_expiry: 360
+refresh_token:
+    default_absolute_expiry: 36000
+    default_sliding_expiry: 3600
+open_id:
+    allowed_redirect_uris:
+        - { host: '{{ ansible_ssh_host }}', port: '5001', uri: '/signin-oidc' }
+    allowed_post_logout_redirect_uris:
+        - { host: '{{ ansible_ssh_host }}', port: '5001', uri: '/signout-callback-oidc' }
+open_id_js:
+    allowed_redirect_uris:
+        - { host: '{{ ansible_ssh_host }}', port: '5001', uri: '/OpenId/Login/JS' }
+    allowed_post_logout_redirect_uris:
+        - { host: '{{ ansible_ssh_host }}', port: '5001', uri: '/OpenId/Login/JS' }
+
+# For AppSettings.WebApi.j2 only
+auth_host: "{{ ansible_ssh_host }}"
+auth_port: "6001"
+audience: "MyBackendApi2"
+client_id: "PolicyBasedBackend"
+refresh_discovery_doc_duration: 8
+
+# For Js.AppConfig.j2
+js_auth_host: "{{ ansible_ssh_host }}"
+js_auth_port: "6001"
+js_client_host: "{{ ansible_ssh_host }}"
+js_client_port: "5001"
+...

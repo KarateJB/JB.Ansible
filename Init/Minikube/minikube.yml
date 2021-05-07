@@ -1,0 +1,8 @@
+---
+- name: Prepare Minikube
+  vars:
+    - machine: dev_hp_omen
+  hosts: "{{ machine }}"
+  gather_facts: no
+  roles:
+    - { role: minikube, become: yes }

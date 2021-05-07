@@ -1,0 +1,35 @@
+---
+- name: Install packages
+  apt:
+    pkg:
+      - yum
+      - yum-utils
+      - conntrack
+    state: latest
+    update_cache: true
+  notify:
+
+- name: Create temp download dir
+  file:
+    path: /tmp/Minikube
+    state: directory
+
+- name: Download miniKube
+  # become: yes
+  # become_user: root
+  get_url:
+    url: "{{ minikube_url }}"
+    dest: "{{ minikube_download_path }}"
+    mode: 0755
+
+- name: Install minikube
+  # become: yes
+  # become_user: root
+  yum:
+    name: "{{ minikube_download_path }}"
+    state: present
+
+- name: Start minukube
+  shell: |
+    minikube start --driver=none
+  

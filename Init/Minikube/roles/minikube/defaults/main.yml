@@ -1,0 +1,4 @@
+---
+minikube_url: https://storage.googleapis.com/minikube/releases/latest/minikube-latest.x86_64.rpm
+minikube_download_path: /tmp/minikube-latest.x86_64.rpm
+minikube_install_dir: /usr/local/bin
