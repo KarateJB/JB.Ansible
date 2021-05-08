@@ -26,7 +26,7 @@ For example,
 ### 2. Run the playbook
 
 ```s
-$ ansible-playbook minikub.yml -e "machine=dev_hp_omen"
+$ ansible-playbook minikube.yml -e "machine=dev_hp_omen"
 ```
 
 The above command will load inventory/ssh key that are defined in `ansible.cfg`.
