@@ -23,11 +23,8 @@
     mode: 0755
 
 - name: Install minikube
-  # become: yes
-  # become_user: root
-  yum:
-    name: "{{ minikube_download_path }}"
-    state: present
+  shell: |
+    install "{{ minikube_download_path }}" "{{ minikube_install_path }}"
 
 - name: Start minukube
   shell: |
