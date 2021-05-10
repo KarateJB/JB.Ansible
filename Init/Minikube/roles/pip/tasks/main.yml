@@ -9,7 +9,7 @@
 #   apt:
 #     name: python3-setuptools
 #     update_cache: yes
-#   # when: pip3_is_installed.rc != 0 # Return code is not success
+  # when: pip3_is_installed.rc != 0 # Return code is not success
 
 - name: Install pip3
   apt:
@@ -17,3 +17,8 @@
     update_cache: yes
     # state: present
   when: pip3_is_installed.rc != 0 # Return code is not success
+
+- name: Force upgrade pip
+  pip: 
+    name: pip
+    state: latest
