@@ -2,3 +2,6 @@
 minikube_url: https://storage.googleapis.com/minikube/releases/latest/minikube-linux-amd64
 minikube_download_path: /tmp/minikube-linux-amd64
 minikube_install_path: /usr/local/bin/minikube
+kubectl_url: https://dl.k8s.io/release/v1.21.0/bin/linux/amd64/kubectl
+kubectl_download_path: /tmp/kubectl
+kubectl_install_path: /usr/local/bin/kubectl

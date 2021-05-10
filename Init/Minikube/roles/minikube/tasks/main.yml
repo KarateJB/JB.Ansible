@@ -26,7 +26,16 @@
   shell: |
     install "{{ minikube_download_path }}" "{{ minikube_install_path }}"
 
+- name: Download kubectl
+  get_url:
+    url: "{{ kubectl_url }}"
+    dest: "{{ kubectl_download_path }}"
+    mode: 0755
+
+- name: Install kubectl
+  shell: |
+    install "{{ kubectl_download_path }}" "{{ kubectl_install_path }}"
+
 - name: Start minukube
   shell: |
     minikube start --driver=none
-  
