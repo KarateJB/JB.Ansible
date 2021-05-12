@@ -39,3 +39,7 @@
 - name: Start minukube
   shell: |
     minikube start --driver=none
+
+- name: Enable ingress
+  shell: |
+    minikube addons enable ingress
